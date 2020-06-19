@@ -29,7 +29,7 @@ namespace BigSchools.ViewModels
 
         public DateTime GetDateTime()
         {
-            return DateTime.Parse(string.Format("{0} {1} ", Date, Time));
+            return DateTime.Parse(string.Format("{0} {1}", Date, Time));
         }
 
         public string Heading { get; set; }

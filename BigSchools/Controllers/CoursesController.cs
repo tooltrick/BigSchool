@@ -7,7 +7,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Web.WebPages;
 
 namespace BigSchools.Controllers
 {
@@ -20,11 +20,19 @@ namespace BigSchools.Controllers
             _dbContext = new ApplicationDbContext();
         }
         // GET: Courses
-        //[Authorize]
-        
+        [Authorize]
+        public ActionResult Create()
+        {
+            var ViewModel = new CourseViewModel
+            {
+                Categories = _dbContext.Categories.ToList(),
+                Heading = "Add Course"
+            };
+            return View(ViewModel);
+        }
         [Authorize]
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(CourseViewModel ViewModel)
         {
             if (!ModelState.IsValid)
@@ -44,16 +52,8 @@ namespace BigSchools.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-        public ActionResult Create()
-        {
-            var ViewModel = new CourseViewModel
-            {
-                Categories = _dbContext.Categories.ToList(),
-                Heading = "Add Course"
-            };
-            return View(ViewModel);
-        }
-
+        
+        [Authorize]
         public ActionResult Attending()
         {
             var userId = User.Identity.GetUserId();
