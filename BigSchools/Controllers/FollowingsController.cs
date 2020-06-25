@@ -19,12 +19,12 @@ namespace BigSchools.Controllers
         [HttpPost]
         public IHttpActionResult Follow(FollowingDto followingDto)
         {
-            var UserId = User.Identity.GetUserId();
-            if (_dbContext.Followings.Any(f => f.FollowerId == UserId && f.FolloweeId == followingDto.FolloweeId))
+            var userId = User.Identity.GetUserId();
+            if (_dbContext.Followings.Any(f => f.FollowerId == userId && f.FolloweeId == followingDto.FolloweeId))
                 return BadRequest("Following already exists");
             var following = new Following
             {
-                FollowerId = UserId,
+                FollowerId = userId,
                 FolloweeId = followingDto.FolloweeId
             };
             _dbContext.Followings.Add(following);

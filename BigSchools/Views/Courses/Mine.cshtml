@@ -61,8 +61,8 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = course.Id }) |
-                @*@Html.ActionLink("Details", "Details", new { id=icourse.Id }) |*@
-                @*@Html.ActionLink("Delete", "Delete", new { id=course.Id })*@
+                @Html.ActionLink("Details", "Details", new { id=course.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=course.Id })
                 <a href="#" class="js-cancel-course" data-course-id="@course.Id">Cancel</a>
             </td>
         </tr>*/

@@ -17,7 +17,7 @@
                         @course.Lecturer.Name
                         @if (Model.ShowAction)
                         {
-                            <button class="btn btn-default btn-sm js-toggle-follow">Follow</button>
+                            <button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturerId">Follow</button>
                         }
 
                     </span>
@@ -54,8 +54,7 @@
             $(".js-toggle-follow").click(function (e) {
                 var button = $(e.target);
                 $.post("/api/followings", { FolloweeId: button.attr("data-user-id") }).done(function () {
-                    button
-                    .text("Following")
+                    button.text("Following")
                 })
                 .fail(function () {
                     alert("Something fail");
