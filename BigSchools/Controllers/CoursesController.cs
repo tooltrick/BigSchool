@@ -71,6 +71,17 @@ namespace BigSchools.Controllers
             return View(ViewModel);
         }
         [Authorize]
+        public ActionResult Following()
+        {
+            var userId = User.Identity.GetUserId();
+            var viewModel = _dbContext.Followings
+                .Where(a => a.FollowerId == userId)
+                .Select(a => a.Followee)
+                .ToList();
+            return View(viewModel);
+        }
+
+        [Authorize]
         public ActionResult Mine()
         {
             var userId = User.Identity.GetUserId();
